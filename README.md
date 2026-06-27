@@ -590,6 +590,44 @@ $host = posix_hostname();
 
 ---
 
+### `posix_lstat(string $path): array|false`
+
+Returns file status information via `lstat(2)`. Unlike `stat(2)`, `lstat` does not follow symbolic links — it reports metadata for the link itself.
+
+On success, returns an associative array with the same keys as PHP’s built-in `lstat()`:
+
+| Key       | Meaning |
+|-----------|---------|
+| `dev`     | Device number of the filesystem containing the file. |
+| `ino`     | Inode number. |
+| `mode`    | File type and permissions (`st_mode`). |
+| `nlink`   | Number of hard links. |
+| `uid`     | Owner user ID. |
+| `gid`     | Owner group ID. |
+| `rdev`    | Device type (for special files). |
+| `size`    | Total size in bytes. |
+| `blksize` | Preferred I/O block size. |
+| `blocks`  | Number of 512-byte blocks allocated. |
+| `atime`   | Last access time (Unix timestamp). |
+| `mtime`   | Last modification time (Unix timestamp). |
+| `ctime`   | Last inode change time (Unix timestamp). |
+
+Returns `false` if the syscall fails.
+
+**Example**
+
+```php
+<?php
+
+$info = posix_lstat('/tmp/my-symlink');
+
+if ($info !== false) {
+    // $info['size'], $info['mode'], etc.
+}
+```
+
+---
+
 ## Quick reference
 
 | Helper | Signature |
@@ -613,6 +651,7 @@ $host = posix_hostname();
 | `posix_wait` | `posix_wait(?int &$status = null): int` |
 | `posix_waitpid` | `posix_waitpid(int $pid, ?int &$status = null, int $options = 0): int` |
 | `posix_hostname` | `posix_hostname(): string\|false` |
+| `posix_lstat` | `posix_lstat(string $path): array\|false` |
 
 ## License
 

@@ -157,3 +157,39 @@ if(!function_exists('posix_hostname'))
         return System::hostname();
     }
 }
+
+if(!function_exists('posix_lstat'))
+{
+    function posix_lstat(string $path): array|false
+    {
+        return System::lstat($path);
+    }
+}
+
+if (!function_exists('posi_mem_alloc')) {
+    function posi_mem_alloc(int $size): int
+    {
+        return \Posi\Memory::alloc($size);
+    }
+}
+
+if (!function_exists('posi_mem_free')) {
+    function posi_mem_free(int $ptr): void
+    {
+        \Posi\Memory::free($ptr);
+    }
+}
+
+if (!function_exists('posi_mem_write')) {
+    function posi_mem_write(int $ptr, string $data, int $offset = 0): void
+    {
+        \Posi\Memory::write($ptr, $data, $offset);
+    }
+}
+
+if (!function_exists('posi_mem_read')) {
+    function posi_mem_read(int $ptr, int $size, int $offset = 0): string
+    {
+        return \Posi\Memory::read($ptr, $size, $offset);
+    }
+}
