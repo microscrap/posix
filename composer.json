@@ -2,7 +2,7 @@
     "name": "microscrap/posix",
     "description": "Unix POSIX Bindings for The PHP Posi Extension",
     "type": "library",
-    "version": "0.4.1",
+    "version": "0.4.2",
     "keywords": ["framework", "scrapyard-io"],
     "license": "MIT",
     "homepage": "https://dosr.projectsaturnstudios.com",
