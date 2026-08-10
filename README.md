@@ -1,20 +1,29 @@
 # microscrap/posix — POSIX bindings for ScrapyardIO
 
-PHP library that wraps the [**posi**](https://github.com/php-io-extensions/posi) extension with global helpers and enums. Every helper delegates to `Posi\System`.
+> **Docs (production):** [ScrapyardIO · microscrap/posix 0.7.x](https://scrapyard-io.projectsaturnstudios.com/ecosystem/microscrap/posix/0.7.x/overview)
 
-This project provides bindings to the UNIX Portable Operating System Interface (POSIX).
+[![Docs](https://img.shields.io/badge/docs-ScrapyardIO-0ea5e9?logo=readthedocs&logoColor=white)](https://scrapyard-io.projectsaturnstudios.com/ecosystem/microscrap/posix/0.7.x/overview)
+[![Packagist Version](https://img.shields.io/packagist/v/microscrap/posix.svg?label=packagist)](https://packagist.org/packages/microscrap/posix)
+[![PHP Version Require](https://img.shields.io/packagist/php-v/microscrap/posix.svg)](https://packagist.org/packages/microscrap/posix)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Requires ext-posi](https://img.shields.io/badge/ext--posi-%5E0.7-777bb4?logo=php&logoColor=white)](https://github.com/php-io-extensions/posi)
+
+PHP library that wraps the [**posi**](https://github.com/php-io-extensions/posi) extension (`ext-posi`) with global helpers and enums. Every helper delegates to `Posi\System` (or `Posi\Memory` for `posi_mem_*`).
+
+This is the **bindings** package — not the native extension. Ecosystem docs: [`0.7.x`](https://scrapyard-io.projectsaturnstudios.com/ecosystem/microscrap/posix/0.7.x/overview).
 
 ## Highlights
 
 * Retrieve file descriptors to replace `fopen`
 * Read and write to file descriptors beyond streams, replacing `fread` and `fwrite`
-* Direct access to `fcntl`
-* Direct access to `ioctl`
+* Direct access to `fcntl` and `ioctl`
+* Optional `posi_mem_*` helpers over `Posi\Memory`
+* Typed enums for common Linux `O_*` / `F_*` flag values
 
 ## Requirements
 
-* PHP 8.3+
-* **ext-posi** ^0.4.0 — install from [php-io-extensions/posi](https://github.com/php-io-extensions/posi) (see that repo for build and enable instructions)
+* PHP `^8.4|^8.5|^8.6`
+* **ext-posi** `^0.7.0` — install from [php-io-extensions/posi](https://github.com/php-io-extensions/posi)
 
 ## Installation
 
@@ -34,16 +43,18 @@ Composer autoloads `src/Helpers/posix-system.php`, registering the global helper
 
 POSIX I/O is invoked through **global helper functions** (for example `posix_open`, `posix_read`). Helpers are only defined if the name is not already taken (`function_exists` guard).
 
-Optional enums live under `Microscrap\Bindings\POSIX\Enums` (`FileControlFlag`, `FcntlCommand`).
+Optional enums live under `Microscrap\Bindings\POSIX\Enums` (`FileControlFlag`, `FcntlCommand`) — cases are **FULLY UPPERCASE**.
 
 ```php
 <?php
 
-$fd = posix_open('/dev/null', O_RDWR);
+use Microscrap\Bindings\POSIX\Enums\FileControlFlag;
+
+$fd = posix_open('/dev/null', FileControlFlag::O_RDWR->value);
 posix_close($fd);
 ```
 
-`posix_open()`, `fcntl()`, and `ioctl()` take the same flag and command constants as C (`O_RDONLY`, `F_GETFL`, and so on). Define them in PHP or load them from your platform headers; values differ by OS.
+`posix_open()`, `fcntl()`, and `ioctl()` take the same flag and command integers as C (`O_RDONLY`, `F_GETFL`, and so on). Prefer the shipped enums for common Linux/glibc values, or define platform constants from your OS headers.
 
 ---
 
@@ -102,7 +113,9 @@ Closes a file descriptor. Returns `0` on success and `-1` on failure (same seman
 ```php
 <?php
 
-$fd = posix_open('/dev/null', O_RDWR);
+use Microscrap\Bindings\POSIX\Enums\FileControlFlag;
+
+$fd = posix_open('/dev/null', FileControlFlag::O_RDWR->value);
 
 $result = posix_close($fd);
 // $result === 0 on success
@@ -231,7 +244,9 @@ posix_close($fd);
 ```php
 <?php
 
-$fd = posix_open('/dev/null', O_WRONLY);
+use Microscrap\Bindings\POSIX\Enums\FileControlFlag;
+
+$fd = posix_open('/dev/null', FileControlFlag::O_WRONLY->value);
 
 posix_write($fd, str_repeat('x', 1024), 1024);
 posix_close($fd);
@@ -417,10 +432,12 @@ Invokes `fcntl(2)` on the descriptor. Returns the syscall status (`0` or non-neg
 ```php
 <?php
 
+use Microscrap\Bindings\POSIX\Enums\FcntlCommand;
+
 $fd = posix_open('/tmp/posix-demo.txt', 0);
 
 $value = 0;
-$res = fcntl($fd, F_GETFL, 0, $value);
+$res = fcntl($fd, FcntlCommand::F_GETFL->value, 0, $value);
 
 // $res — fcntl status
 // $value — current O_* flags as integer
@@ -434,14 +451,17 @@ posix_close($fd);
 ```php
 <?php
 
+use Microscrap\Bindings\POSIX\Enums\FcntlCommand;
+use Microscrap\Bindings\POSIX\Enums\FileControlFlag;
+
 $fd = posix_open('/tmp/posix-demo.txt', 0);
 
 $current = 0;
-fcntl($fd, F_GETFL, 0, $current);
-$newFlags = $current | O_NONBLOCK;
+fcntl($fd, FcntlCommand::F_GETFL->value, 0, $current);
+$newFlags = $current | FileControlFlag::O_NONBLOCK->value;
 
 $ignored = 0;
-fcntl($fd, F_SETFL, $newFlags, $ignored);
+fcntl($fd, FcntlCommand::F_SETFL->value, $newFlags, $ignored);
 posix_close($fd);
 ```
 
@@ -481,7 +501,9 @@ Invokes `ioctl(2)` on the descriptor. Returns the syscall status. Output is writ
 ```php
 <?php
 
-$fd = posix_open('/dev/null', O_RDWR);
+use Microscrap\Bindings\POSIX\Enums\FileControlFlag;
+
+$fd = posix_open('/dev/null', FileControlFlag::O_RDWR->value);
 
 $value = 0;
 $res = ioctl($fd, SOME_IOCTL_CMD, null, $value);
@@ -494,7 +516,9 @@ posix_close($fd);
 ```php
 <?php
 
-$fd = posix_open('/dev/some-device', O_RDWR);
+use Microscrap\Bindings\POSIX\Enums\FileControlFlag;
+
+$fd = posix_open('/dev/some-device', FileControlFlag::O_RDWR->value);
 
 $value = 0;
 $res = ioctl($fd, SOME_IOCTL_CMD, 0, $value);
@@ -507,7 +531,9 @@ posix_close($fd);
 ```php
 <?php
 
-$fd = posix_open('/dev/some-device', O_RDWR);
+use Microscrap\Bindings\POSIX\Enums\FileControlFlag;
+
+$fd = posix_open('/dev/some-device', FileControlFlag::O_RDWR->value);
 
 $value = 0;
 $res = ioctl($fd, SOME_IOCTL_CMD, ['value' => 1], $value);
@@ -523,7 +549,9 @@ posix_close($fd);
 ```php
 <?php
 
-$fd = posix_open('/dev/some-device', O_RDWR);
+use Microscrap\Bindings\POSIX\Enums\FileControlFlag;
+
+$fd = posix_open('/dev/some-device', FileControlFlag::O_RDWR->value);
 
 $buffer = str_repeat("\0", 32);
 $value = 0;
@@ -628,6 +656,35 @@ if ($info !== false) {
 
 ---
 
+### `posi_mem_alloc(int $size): int`
+
+Allocates `$size` bytes via `Posi\Memory::alloc` and returns a pointer integer usable with the other `posi_mem_*` helpers.
+
+### `posi_mem_free(int $ptr): void`
+
+Frees a pointer previously returned by `posi_mem_alloc`.
+
+### `posi_mem_write(int $ptr, string $data, int $offset = 0): void`
+
+Writes `$data` into the allocated buffer at `$offset`.
+
+### `posi_mem_read(int $ptr, int $size, int $offset = 0): string`
+
+Reads `$size` bytes from the allocated buffer at `$offset`.
+
+**Example**
+
+```php
+<?php
+
+$ptr = posi_mem_alloc(16);
+posi_mem_write($ptr, "hello\0");
+$chunk = posi_mem_read($ptr, 5);
+posi_mem_free($ptr);
+```
+
+---
+
 ## Quick reference
 
 | Helper | Signature |
@@ -652,6 +709,10 @@ if ($info !== false) {
 | `posix_waitpid` | `posix_waitpid(int $pid, ?int &$status = null, int $options = 0): int` |
 | `posix_hostname` | `posix_hostname(): string\|false` |
 | `posix_lstat` | `posix_lstat(string $path): array\|false` |
+| `posi_mem_alloc` | `posi_mem_alloc(int $size): int` |
+| `posi_mem_free` | `posi_mem_free(int $ptr): void` |
+| `posi_mem_write` | `posi_mem_write(int $ptr, string $data, int $offset = 0): void` |
+| `posi_mem_read` | `posi_mem_read(int $ptr, int $size, int $offset = 0): string` |
 
 ## License
 

@@ -2,10 +2,21 @@
     "name": "microscrap/posix",
     "description": "Unix POSIX Bindings for The PHP Posi Extension",
     "type": "library",
-    "version": "0.5.1",
-    "keywords": ["framework", "scrapyard-io"],
+    "version": "0.7.0",
+    "keywords": [
+        "framework",
+        "scrapyard-io",
+        "posix",
+        "posi",
+        "bindings"
+    ],
     "license": "MIT",
-    "homepage": "https://dosr.projectsaturnstudios.com",
+    "homepage": "https://scrapyard-io.projectsaturnstudios.com/ecosystem/microscrap/posix/0.7.x/overview",
+    "support": {
+        "docs": "https://scrapyard-io.projectsaturnstudios.com/ecosystem/microscrap/posix/0.7.x/overview",
+        "source": "https://github.com/microscrap/posix",
+        "issues": "https://github.com/microscrap/posix/issues"
+    },
     "authors": [
         {
             "name": "Angel Gonzalez",
@@ -13,8 +24,15 @@
         }
     ],
     "require": {
-        "php": "^8.3",
-        "ext-posi": "^0.4.11|^0.5.0"
+        "php": "^8.4|^8.5|^8.6",
+        "ext-posi": "^0.7.0"
+    },
+    "suggest": {
+        "microscrap/uart": "UART / serial bindings over posix + ext-posi (^0.7)",
+        "microscrap/gpio": "gpiod bindings over posix + ext-posi (^0.7)",
+        "microscrap/i2c": "libi2c bindings over posix + ext-posi (^0.7)",
+        "microscrap/spi": "spidev bindings over posix + ext-posi (^0.7)",
+        "scrapyard-io/gpio-framework": "GPIO application framework over Microscrap protocol bindings (^0.7)"
     },
     "autoload": {
         "psr-4": {
@@ -26,6 +44,13 @@
     },
     "config": {
         "sort-packages": true
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.7.x-dev",
+            "dev-main": "0.7.x-dev",
+            "dev-0.7.x": "0.7.x-dev"
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true
