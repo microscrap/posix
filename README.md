@@ -713,6 +713,7 @@ posi_mem_free($ptr);
 | `posi_mem_free` | `posi_mem_free(int $ptr): void` |
 | `posi_mem_write` | `posi_mem_write(int $ptr, string $data, int $offset = 0): void` |
 | `posi_mem_read` | `posi_mem_read(int $ptr, int $size, int $offset = 0): string` |
+| `posix_ppoll` | `posix_ppoll(int $fd, int $timeout_ns = 0, int $events = 0): int` |
 
 ## License
 

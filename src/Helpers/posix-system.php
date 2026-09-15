@@ -193,3 +193,11 @@ if (!function_exists('posi_mem_read')) {
         return \Posi\Memory::read($ptr, $size, $offset);
     }
 }
+
+if(!function_exists('posix_ppoll'))
+{
+    function posix_ppoll(int $fd, int $timeout_ns = 0, int $events = 0): int
+    {
+        return System::ppoll($fd, $timeout_ns, $events);
+    }
+}

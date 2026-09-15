@@ -1,3 +1,7 @@
+## 2026-09-14
+* **Update**: relabeled 0.7.0 → 0.8.0 with `ext-posi` / `ext-ftdi` 0.8.0. No code change.
+* **Add**: posix_ppoll helper (1:1 over System::ppoll).
+
 # Log
 
 ## 2026-08-10
