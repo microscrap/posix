@@ -14,3 +14,6 @@
 * **Creation**: Subdirectory indexes under `orientation/`, `architecture/`, `conventions/`, `traps/`; root [index.md](/index.md).
 * **Note**: Root `AGENTS.md` already maps these concept paths; all concepts left `status: draft` pending human verification.
 * **Update**: `composer.json` reconciled to **0.7.0** (`php` `^8.4|^8.5|^8.6`, `ext-posi` `^0.7.0`, peer `suggest`, homepage/support, branch-alias).
+
+## 2026-09-23
+* **Update**: 0.9.0 line. `composer.json` version, `ext-posi ^0.9.0`, peer suggests `^0.9.0`, branch alias `0.9.x-dev`; README badges and requirements; concept version tables. No code change.

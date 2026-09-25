@@ -6,7 +6,7 @@
 [![Packagist Version](https://img.shields.io/packagist/v/microscrap/posix.svg?label=packagist)](https://packagist.org/packages/microscrap/posix)
 [![PHP Version Require](https://img.shields.io/packagist/php-v/microscrap/posix.svg)](https://packagist.org/packages/microscrap/posix)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![Requires ext-posi](https://img.shields.io/badge/ext--posi-%5E0.7-777bb4?logo=php&logoColor=white)](https://github.com/php-io-extensions/posi)
+[![Requires ext-posi](https://img.shields.io/badge/ext--posi-%5E0.9.0-777bb4?logo=php&logoColor=white)](https://github.com/php-io-extensions/posi)
 
 PHP library that wraps the [**posi**](https://github.com/php-io-extensions/posi) extension (`ext-posi`) with global helpers and enums. Every helper delegates to `Posi\System` (or `Posi\Memory` for `posi_mem_*`).
 
@@ -23,7 +23,7 @@ This is the **bindings** package — not the native extension. Ecosystem docs: [
 ## Requirements
 
 * PHP `^8.4|^8.5|^8.6`
-* **ext-posi** `^0.7.0` — install from [php-io-extensions/posi](https://github.com/php-io-extensions/posi)
+* **ext-posi** `^0.9.0` — install from [php-io-extensions/posi](https://github.com/php-io-extensions/posi)
 
 ## Installation
 

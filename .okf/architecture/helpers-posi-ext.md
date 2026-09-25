@@ -4,7 +4,7 @@ title: "Helpers → Posi\\* ext"
 description: "Global helpers call Posi\\System (FD/syscalls) and Posi\\Memory (posi_mem_*); no static wrapper class."
 resource: src/Helpers/posix-system.php
 tags: [architecture, bindings, posix, helpers, posi]
-generated: { by: "okf-documentation-generator/cursor", at: "2026-08-10T21:22:00Z" }
+generated: { by: "openai/gpt-5.6-sol", at: "2026-09-23T23:08:00Z" }
 status: draft
 sources:
   - id: helpers
@@ -47,7 +47,7 @@ Composer `autoload.files` registers:[^composer]
 
 Each function is wrapped in `if (! function_exists(...))` so a prior definition wins (including PHP’s built-in `posix` extension for overlapping names).[^helpers]
 
-# Helper groups (0.7 surface)
+# Helper groups (0.9 surface)
 
 | Group | Examples | Extension target |
 |-------|----------|------------------|

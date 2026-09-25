@@ -1,10 +1,10 @@
 ---
 type: Orientation
-title: Package (0.7)
-description: "microscrap/posix 0.7.0 — POSIX PHP helpers over ext-posi; no ServiceProvider."
+title: Package (0.9)
+description: "microscrap/posix 0.9.0 — POSIX PHP helpers over ext-posi; no ServiceProvider."
 resource: .
-tags: [orientation, posix, microscrap, bindings, 0.7]
-generated: { by: "okf-documentation-generator/cursor", at: "2026-08-10T21:22:00Z" }
+tags: [orientation, posix, microscrap, bindings, 0.9]
+generated: { by: "openai/gpt-5.6-sol", at: "2026-09-23T23:08:00Z" }
 status: draft
 sources:
   - id: composer
@@ -12,7 +12,7 @@ sources:
     title: Package name, namespace, autoload helpers
   - id: readme
     resource: README.md
-    title: Package README (0.7.x requirements and surface)
+    title: Package README requirements and surface
   - id: helpers
     resource: src/Helpers/posix-system.php
     title: Global helper autoload file
@@ -23,16 +23,16 @@ sources:
 
 # What it is
 
-Composer package `microscrap/posix` at **0.7.0** — PHP helpers and enums over the [**php-io-extensions/posi**](https://github.com/php-io-extensions/posi) extension (`ext-posi`).[^readme][^composer]
+Composer package `microscrap/posix` at **0.9.0** — PHP helpers and enums over the [**php-io-extensions/posi**](https://github.com/php-io-extensions/posi) extension (`ext-posi`).[^readme][^composer]
 
 | Field | Value |
 |-------|-------|
 | Name | `microscrap/posix`[^composer] |
-| Version | `0.7.0`[^composer] |
+| Version | `0.9.0`[^composer] |
 | PHP | `^8.4\|^8.5\|^8.6`[^composer] |
 | Namespace | `Microscrap\Bindings\POSIX\` → `src/`[^composer] |
-| Require | `ext-posi` `^0.7.0`[^composer] |
-| Suggest (peers) | `microscrap/uart`, `microscrap/gpio`, `microscrap/i2c`, `microscrap/spi` `^0.7`; `scrapyard-io/gpio-framework` `^0.7` |
+| Require | `ext-posi` `^0.9.0`[^composer] |
+| Suggest (peers) | `microscrap/uart`, `microscrap/gpio`, `microscrap/i2c`, `microscrap/spi` `^0.9`; `scrapyard-io/framework` `^0.9` |
 | Homepage | Ecosystem docs overview (see [Ecosystem docs](ecosystem-docs.md))[^readme] |
 | Discovery | **None** — no provider / Chassis registration in this package[^agents] |
 | Role | Bindings layer only (global helpers + enums)[^agents][^readme] |
@@ -63,9 +63,9 @@ Autoloads `src/Helpers/posix-system.php` (each helper guarded with `function_exi
 | Enums | [Enums for platform flags](../conventions/enums-platform-flags.md) |
 | Protocol peers | [Pair with protocol peers](pairing-protocol-peers.md) |
 | Docs site | [Ecosystem docs](ecosystem-docs.md) |
-| Extension | `php-io-extensions/posi` 0.7.0 |
+| Extension | `php-io-extensions/posi` 0.9.0 |
 
 [^composer]: Package name, namespace, autoload helpers
-[^readme]: Package README (0.7.x requirements and surface)
+[^readme]: Package README requirements and surface
 [^helpers]: Global helper autoload file
 [^agents]: Agent rules for this package

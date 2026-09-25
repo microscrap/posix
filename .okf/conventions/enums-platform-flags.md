@@ -4,7 +4,7 @@ title: Enums for platform flags
 description: "FileControlFlag and FcntlCommand are int-backed with FULLY UPPERCASE cases (Linux/glibc values)."
 resource: src/Enums/
 tags: [convention, enums, posix, linux, glibc]
-generated: { by: "okf-documentation-generator/cursor", at: "2026-08-10T21:22:00Z" }
+generated: { by: "openai/gpt-5.6-sol", at: "2026-09-23T23:08:00Z" }
 status: draft
 sources:
   - id: readme
@@ -32,7 +32,7 @@ sources:
 - No class-level constants in `src/` — prefer enums.[^agents]
 - Pass `->value` (or a raw `int`) into helpers; helpers take integers, not enum objects.[^readme]
 
-# Enum inventory (0.7.0)
+# Enum inventory (0.9.0)
 
 | Enum | Purpose | Cases (summary) |
 |------|---------|-----------------|

@@ -201,3 +201,12 @@ if(!function_exists('posix_ppoll'))
         return System::ppoll($fd, $timeout_ns, $events);
     }
 }
+
+if(!function_exists('posix_fdopen'))
+{
+    /** @return resource|false a stream that owns $fd; fclose() closes it */
+    function posix_fdopen(int $fd, string $mode)
+    {
+        return System::fdopen($fd, $mode);
+    }
+}

@@ -2,7 +2,7 @@
     "name": "microscrap/posix",
     "description": "Unix POSIX Bindings for The PHP Posi Extension",
     "type": "library",
-    "version": "0.8.0",
+    "version": "0.9.0",
     "keywords": [
         "framework",
         "scrapyard-io",
@@ -25,14 +25,17 @@
     ],
     "require": {
         "php": "^8.4|^8.5|^8.6",
-        "ext-posi": "^0.8.0"
+        "ext-posi": "^0.9.0"
+    },
+    "require-dev": {
+        "pestphp/pest": "^4"
     },
     "suggest": {
-        "microscrap/uart": "^0.8.0 - UART / serial bindings over posix + ext-posi",
-        "microscrap/gpio": "^0.8.0 - gpiod bindings over posix + ext-posi",
-        "microscrap/i2c": "^0.8.0 - libi2c bindings over posix + ext-posi",
-        "microscrap/spi": "^0.8.0 - spidev bindings over posix + ext-posi",
-        "scrapyard-io/gpio-framework": "GPIO application framework over Microscrap protocol bindings (^0.7)"
+        "microscrap/uart": "^0.9.0 - UART / serial bindings over posix + ext-posi",
+        "microscrap/gpio": "^0.9.0 - gpiod bindings over posix + ext-posi",
+        "microscrap/i2c": "^0.9.0 - libi2c bindings over posix + ext-posi",
+        "microscrap/spi": "^0.9.0 - spidev bindings over posix + ext-posi",
+        "scrapyard-io/framework": "^0.9.0 - GPIO application framework over Microscrap protocol bindings"
     },
     "autoload": {
         "psr-4": {
@@ -42,12 +45,20 @@
             "src/Helpers/posix-system.php"
         ]
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Microscrap\\Bindings\\POSIX\\Tests\\": "tests/"
+        }
+    },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
     },
     "extra": {
         "branch-alias": {
-            "dev-main": "0.8.x-dev"
+            "dev-main": "0.9.x-dev"
         }
     },
     "minimum-stability": "dev",

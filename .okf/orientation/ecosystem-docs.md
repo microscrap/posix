@@ -1,10 +1,10 @@
 ---
 type: Reference
 title: Ecosystem docs
-description: "Published ScrapyardIO ecosystem docs for microscrap/posix 0.7.x."
+description: "Published ScrapyardIO ecosystem docs linked from microscrap/posix 0.9."
 resource: "https://scrapyard-io.projectsaturnstudios.com/ecosystem/microscrap/posix/0.7.x/overview"
-tags: [orientation, docs, ecosystem, 0.7]
-generated: { by: "okf-documentation-generator/cursor", at: "2026-08-10T21:22:00Z" }
+tags: [orientation, docs, ecosystem, 0.9]
+generated: { by: "openai/gpt-5.6-sol", at: "2026-09-23T23:08:00Z" }
 status: draft
 sources:
   - id: readme
@@ -31,7 +31,7 @@ README badges and the production docs banner point at that overview.[^readme]
 
 # Related
 
-* [Package (0.7)](package.md)
+* [Package (0.9)](package.md)
 
 [^readme]: README production docs link and badges
 [^overview]: Ecosystem overview page

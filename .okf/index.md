@@ -4,7 +4,7 @@ okf_version: "0.2"
 
 # microscrap/posix Knowledge Bundle
 
-Package knowledge for `microscrap/posix` (POSIX bindings over **ext-posi**, v0.7.0).
+Package knowledge for `microscrap/posix` (POSIX bindings over **ext-posi**, v0.9.0).
 Read this index first; open only the concepts needed for the task.
 
 **Trust rule:** Prefer `status: stable`. Treat `deprecated` as historical only. New agent-written concepts stay `status: draft` until a human verifies them.
@@ -15,9 +15,9 @@ Read this index first; open only the concepts needed for the task.
 
 # Orientation
 
-* [Package (0.7)](orientation/package.md) - Composer identity, namespace, helpers over ext-posi.
-* [Ecosystem docs](orientation/ecosystem-docs.md) - Published 0.7.x overview and docs site entrypoint.
-* [Pair with protocol peers](orientation/pairing-protocol-peers.md) - uart / gpio / i2c / spi (and ftdi beside); gpio-framework above.
+* [Package (0.9)](orientation/package.md) - Composer identity, namespace, helpers over ext-posi.
+* [Ecosystem docs](orientation/ecosystem-docs.md) - Published overview and docs site entrypoint.
+* [Pair with protocol peers](orientation/pairing-protocol-peers.md) - uart / gpio / i2c / spi (and ftdi beside); scrapyard-io/framework above.
 
 # Architecture
 

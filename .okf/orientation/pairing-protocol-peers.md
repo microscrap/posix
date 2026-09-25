@@ -1,10 +1,10 @@
 ---
 type: Orientation
 title: Pair with protocol peers
-description: "uart / gpio / i2c / spi build on this FD layer; ftdi/mpsse sit beside for USB; gpio-framework sits above."
+description: "uart / gpio / i2c / spi build on this FD layer; ftdi/mpsse sit beside for USB; scrapyard-io/framework sits above."
 resource: .
 tags: [orientation, gpio, uart, i2c, spi, ftdi, composition]
-generated: { by: "okf-documentation-generator/cursor", at: "2026-08-10T21:22:00Z" }
+generated: { by: "openai/gpt-5.6-sol", at: "2026-09-23T23:08:00Z" }
 status: draft
 sources:
   - id: readme
@@ -25,18 +25,18 @@ sources:
 | Concern | Package |
 |---------|---------|
 | POSIX FD / syscall helpers | `microscrap/posix` (this package) |
-| UART | `microscrap/uart` `^0.7` |
-| GPIO | `microscrap/gpio` `^0.7` |
-| I2C | `microscrap/i2c` `^0.7` |
-| SPI | `microscrap/spi` `^0.7` |
+| UART | `microscrap/uart` `^0.9` |
+| GPIO | `microscrap/gpio` `^0.9` |
+| I2C | `microscrap/i2c` `^0.9` |
+| SPI | `microscrap/spi` `^0.9` |
 | USB MPSSE / FTDI | `microscrap/ftdi` (sits **beside** — USB path, not a posix child) |
-| Higher GPIO orchestration | `scrapyard-io/gpio-framework` `^0.7` (above the microscrap protocol packages) |
+| Higher GPIO orchestration | `scrapyard-io/framework` `^0.9` (above the microscrap protocol packages) |
 
 # Typical flow
 
-1. Depend on this package (and **ext-posi** `^0.7.0`).
+1. Depend on this package (and **ext-posi** `^0.9.0`).
 2. Protocol peers open device nodes / descriptors via these helpers (or shared patterns) and speak their bus protocol.
-3. Application / `gpio-framework` composes peers — do not invent framework providers inside this package.[^agents]
+3. Application / `scrapyard-io/framework` composes peers — do not invent framework providers inside this package.[^agents]
 
 # Caveats
 
@@ -45,7 +45,7 @@ sources:
 
 # Related
 
-* [Package (0.7)](package.md)
+* [Package (0.9)](package.md)
 * [Helpers → Posi\* ext](../architecture/helpers-posi-ext.md)
 
 [^readme]: Bindings role and FD-centric helpers

@@ -4,7 +4,7 @@ title: "`function_exists` vs built-in posix"
 description: "Helpers skip definition when the name exists; PHP’s built-in posix extension may win for overlapping names."
 resource: src/Helpers/posix-system.php
 tags: [trap, autoload, posix, helpers, php-ext]
-generated: { by: "okf-documentation-generator/cursor", at: "2026-08-10T21:22:00Z" }
+generated: { by: "openai/gpt-5.6-sol", at: "2026-09-23T23:08:00Z" }
 status: draft
 sources:
   - id: readme
@@ -48,7 +48,7 @@ Names unique to this wrap (for example `posix_open`, `fcntl` / `ioctl` as provid
 # Related
 
 * [Helpers → Posi\* ext](../architecture/helpers-posi-ext.md)
-* [Package (0.7)](../orientation/package.md)
+* [Package (0.9)](../orientation/package.md)
 
 [^readme]: README notes on function_exists and posix_getuid
 [^helpers]: function_exists guard pattern
